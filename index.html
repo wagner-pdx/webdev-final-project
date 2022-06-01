@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      $(function () {
+        $('#navbar').load('/navbar.html');
+        //  Remove Active from previous location, and add it to this page
+
+        $('#blog-00_card').load('/blog/blog-00_card.html');
+        $('#project-00_card').load('/project/project-00_card.html');
+        $('#blog-01_card').load('/blog/blog-01_card.html');
+        $('#project-01_card').load('/project/project-01_card.html');
+        $('#blog-02_card').load('/blog/blog-02_card.html');
+        $('#project-02_card').load('/project/project-02_card.html');
+        $('#blog-03_card').load('/blog/blog-03_card.html');
+        $('#project-03_card').load('/project/project-03_card.html');
+      });
+    </script>
+    <title>Feed</title>
+  </head>
+  <body>
+    <div id="navbar"></div>
+    <main>
+      <div class="container pt-4">
+        <div class="row justify-content-around">
+          <div class="col">
+            <h1>Home</h1>
+          </div>
+        </div>
+        <div class="row justify-content-around">
+          <div class="col">
+            <p>
+              Maiores sed ipsum cupiditate, quod quaerat aperiam reprehenderit!
+            </p>
+            <p>
+              Velit nisi rerum nostrum dignissimos quasi, cumque accusantium aut
+              doloremque maxime distinctio quisquam?
+            </p>
+            <p>
+              Deleniti veniam, saepe, exercitationem deserunt at modi eaque qui
+              dolorem molestias magni cumque unde ducimus rerum incidunt!
+            </p>
+          </div>
+        </div>
+        <div class="row justify-content-around">
+          <div class="col">
+            <h1>Feed</h1>
+          </div>
+        </div>
+        <div class="row justify-content-around">
+          <div class="col">
+            <p>Perspiciatis neque vel distinctio hic doloremque magni modi!</p>
+            <p>Fugiat animi similique quasi vel.</p>
+          </div>
+        </div>
+        <div class="row justify-content-around">
+          <div id="blog-00_card" class="col"></div>
+          <div id="project-00_card" class="col"></div>
+          <div id="blog-01_card" class="col"></div>
+          <div id="project-01_card" class="col"></div>
+          <div id="blog-02_card" class="col"></div>
+          <div id="project-02_card" class="col"></div>
+          <div id="blog-03_card" class="col"></div>
+          <div id="project-03_card" class="col"></div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
