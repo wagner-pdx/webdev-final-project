@@ -10,7 +10,7 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="styles.css" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
@@ -26,13 +26,13 @@
     ></script>
     <script>
       $(function () {
-        $('#navbar').load('/navbar.html');
+        $('#navbar').load('navbar.html');
         //  Remove Active from previous location, and add it to this page
 
-        $('#blog-00_card').load('/blog/blog-00_card.html');
-        $('#blog-01_card').load('/blog/blog-01_card.html');
-        $('#blog-02_card').load('/blog/blog-02_card.html');
-        $('#blog-03_card').load('/blog/blog-03_card.html');
+        $('#card_blog-00').load('card_blog-00.html');
+        $('#card_blog-01').load('card_blog-01.html');
+        $('#card_blog-02').load('card_blog-02.html');
+        $('#card_blog-03').load('card_blog-03.html');
       });
     </script>
     <title>Blog</title>
@@ -57,10 +57,10 @@
           </div>
         </div>
         <div class="row justify-content-around">
-          <div id="blog-00_card" class="col"></div>
-          <div id="blog-01_card" class="col"></div>
-          <div id="blog-02_card" class="col"></div>
-          <div id="blog-03_card" class="col"></div>
+          <div id="card_blog-00" class="col"></div>
+          <div id="card_blog-01" class="col"></div>
+          <div id="card_blog-02" class="col"></div>
+          <div id="card_blog-03" class="col"></div>
         </div>
       </div>
     </main>
