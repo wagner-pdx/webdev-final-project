@@ -42,7 +42,7 @@
       <div class="container py-4">
         <div class="row justify-content-around">
           <div class="col">
-            <h1>Contact</h1>
+            <h1>Feedback</h1>
           </div>
         </div>
         <div class="row justify-content-around">
@@ -63,75 +63,122 @@
         <div class="row justify-content-around">
           <div class="col">
             <form>
-              <fieldset disabled>
-                <legend>Contact Form</legend>
+              <fieldset>
+                <legend>Feedback Form</legend>
                 <div class="mb-3">
-                  <label for="disabledTextInput" class="form-label">Name</label>
-                  <input
-                    type="text"
-                    id="disabledTextInput"
-                    class="form-control"
-                    placeholder="Feature Not Implemented"
-                  />
-                </div>
-                <div class="mb-3">
-                  <label for="disabledSelect" class="form-label"
-                    >Disabled select menu</label
-                  >
-                  <select id="disabledSelect" class="form-select">
-                    <option>Disabled select</option>
-                  </select>
-                </div>
-                <div class="mb-3">
-                  <div class="form-check">
+                  <div class="mb-3">
+                    <label for="form-name" class="form-label">Name</label>
+                    <input class="form-control" id="form-name" placeholder="Your Name"></input>
+                  </div>
+                  <div class="mb-3">
+                    <label for="form-email" class="form-label"
+                      >Email address</label
+                    >
                     <input
-                      class="form-check-input"
-                      type="checkbox"
-                      id="disabledFieldsetCheck"
-                      disabled
+                      type="email"
+                      class="form-control"
+                      id="form-email"
+                      placeholder="name@example.com"
                     />
-                    <label class="form-check-label" for="disabledFieldsetCheck">
-                      Can't check this
-                    </label>
+                  </div>
+                  <div class="mb-3">
+                    <label for="form-text-area" class="form-label"
+                      >Please leave a comment here</label
+                    >
+                    <textarea
+                      class="form-control"
+                      id="form-text-area"
+                      rows="3"
+                      placeholder="Andrew, I clicked on all the buttons on your website, and they all work! I am constantly impressed by your ability to make buttons that do things, and work. When I need someone to make buttons that work, I will be contacting you. "
+                    ></textarea>
+                  </div>
+                  <div class="mb-3">
+                    <legend class="mb-0">
+                      How would you rate this website?
+                    </legend>
+                    <div
+                      class="btn-group me-2"
+                      role="group"
+                      aria-label="First group"
+                    >
+                      <button id="star-01" type="button" class="star btn btn-outline-secondary">
+                        <i class="fa-solid fa-star"></i>
+                      </button>
+                      <button id="star-02" type="button" class="star btn btn-outline-secondary">
+                        <i class="fa-solid fa-star"></i>
+                      </button>
+                      <button id="star-03" type="button" class="star btn btn-outline-secondary">
+                        <i class="fa-solid fa-star"></i>
+                      </button>
+                      <button id="star-04" type="button" class="star btn btn-outline-secondary">
+                        <i class="fa-solid fa-star"></i>
+                      </button>
+                      <button id="star-05" type="button" class="star btn btn-outline-secondary">
+                        <i class="fa-solid fa-star"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <legend class="mb-0">
+                      Would you visit this website again?
+                    </legend>
+                    <div class="form-check ml-3">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="form-radio"
+                        id="form-radio-01"
+                      />
+                      <label class="form-check-label" for="form-radio-01">
+                        Yes.
+                      </label>
+                    </div>
+                    <div class="form-check ml-3">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="form-radio"
+                        id="form-radio-02"
+                        checked
+                      />
+                      <label class="form-check-label" for="form-radio-02">
+                        Definitely, Yes.
+                      </label>
+                    </div>
+                    <div class="form-check ml-3">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="form-radio"
+                        id="form-radio-03"
+                        checked
+                      />
+                      <label class="form-check-label" for="form-radio-03">
+                        Absolutely, Yes!
+                      </label>
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <button
+                      type="submit"
+                      class="btn btn-primary"
+                      value="Submit"
+                    >
+                      Submit
+                    </button>
+                    <button
+                      type="reset"
+                      class="btn btn-secondary"
+                      value="Reset"
+                    >
+                      Reset
+                    </button>
                   </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
               </fieldset>
             </form>
           </div>
         </div>
-        <form class="register-form" action="">
-          <div class="row justify-content-around">
-            <div class="col">
-              <h1>Registration Form</h1>
-            </div>
-          </div>
-          <div class="row justify-content-around">
-            <div class="col">
-              <label for="username">Username: </label>
-              <input id="username" type="text" maxlength="250" />
-              <label for="email">Email: </label>
-              <input id="email" type="email" maxlength="250" />
-              <label for="password">Password: </label>
-              <input id="password" type="password" maxlength="250" />
-              <fieldset>
-                <legend>Would you like to sign up for the newsletter?</legend>
-                <div>
-                  <input id="news_yes" type="radio" name="news" value="yes" />
-                  <label for="news_yes">Yes, sign me up</label>
-                </div>
-                <div>
-                  <input id="news_no" type="radio" name="news" value="no" />
-                  <label for="news_no">No, thank you</label>
-                </div>
-              </fieldset>
-              <label for="date">Date: </label>
-              <input id="date" type="date" />
-              <input type="submit" name="submit" value="submit" />
-              <input type="reset" name="reset" value="reset" />
-            </div>
-          </div>
-        </form>
       </div>
     </main>
   </body>
