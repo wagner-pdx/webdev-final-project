@@ -11,6 +11,10 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="styles.css" />
+    <script
+      src="https://kit.fontawesome.com/d7cffc4e06.js"
+      crossorigin="anonymous"
+    ></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
@@ -35,7 +39,7 @@
   <body>
     <div id="navbar"></div>
     <main>
-      <div class="container pt-4">
+      <div class="container py-4">
         <div class="row justify-content-around">
           <div class="col">
             <h1>Contact</h1>
@@ -56,6 +60,78 @@
             </p>
           </div>
         </div>
+        <div class="row justify-content-around">
+          <div class="col">
+            <form>
+              <fieldset disabled>
+                <legend>Contact Form</legend>
+                <div class="mb-3">
+                  <label for="disabledTextInput" class="form-label">Name</label>
+                  <input
+                    type="text"
+                    id="disabledTextInput"
+                    class="form-control"
+                    placeholder="Feature Not Implemented"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label for="disabledSelect" class="form-label"
+                    >Disabled select menu</label
+                  >
+                  <select id="disabledSelect" class="form-select">
+                    <option>Disabled select</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      id="disabledFieldsetCheck"
+                      disabled
+                    />
+                    <label class="form-check-label" for="disabledFieldsetCheck">
+                      Can't check this
+                    </label>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+        <form class="register-form" action="">
+          <div class="row justify-content-around">
+            <div class="col">
+              <h1>Registration Form</h1>
+            </div>
+          </div>
+          <div class="row justify-content-around">
+            <div class="col">
+              <label for="username">Username: </label>
+              <input id="username" type="text" maxlength="250" />
+              <label for="email">Email: </label>
+              <input id="email" type="email" maxlength="250" />
+              <label for="password">Password: </label>
+              <input id="password" type="password" maxlength="250" />
+              <fieldset>
+                <legend>Would you like to sign up for the newsletter?</legend>
+                <div>
+                  <input id="news_yes" type="radio" name="news" value="yes" />
+                  <label for="news_yes">Yes, sign me up</label>
+                </div>
+                <div>
+                  <input id="news_no" type="radio" name="news" value="no" />
+                  <label for="news_no">No, thank you</label>
+                </div>
+              </fieldset>
+              <label for="date">Date: </label>
+              <input id="date" type="date" />
+              <input type="submit" name="submit" value="submit" />
+              <input type="reset" name="reset" value="reset" />
+            </div>
+          </div>
+        </form>
       </div>
     </main>
   </body>
