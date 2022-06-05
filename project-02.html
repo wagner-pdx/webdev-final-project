@@ -28,6 +28,11 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
     ></script>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
     <script>
       $(function () {
         $('#navbar').load('navbar.html');
@@ -45,78 +50,680 @@
             <h1>Project-02</h1>
           </div>
         </div>
+
         <div class="row justify-content-around">
-          <div class="col">
-            <h2>Synopsis</h2>
+          <div class="col p-0">
+            <img
+              class="img-fluid"
+              src="src/Project-02_Post-Image_Color.png"
+              alt="Picture of training data text from the data set."
+            />
           </div>
         </div>
+
+        <div class="row justify-content-around">
+          <div class="col">
+            <h2>Abstract</h2>
+          </div>
+        </div>
+
         <div class="row justify-content-around">
           <div class="col">
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error
-              atque consectetur debitis rem neque fugit! Qui neque praesentium
-              tempora accusamus perferendis ratione nemo sapiente, velit porro
-              repudiandae, veritatis, suscipit quis?
+              It is our goal to iterate on the prior work of
+              <cite
+                ><a href="https://arxiv.org/abs/2012.13391"
+                  >(Nie et al., 2020)</a
+                ></cite
+              >, and try new things in attempt to achieve better results.
+              Towards these ends we propose a composite model using a pretrained
+              model and adding Parts-of-Speech tagging alongside the embeddings,
+              then fine-tuning the results on a domain specific dataset. In this
+              paper, we established a baseline against the relevant source
+              paper, to validate our implementation. Similarly we implement our
+              proposed model and compare against those same results. While we
+              succeed in establishing our baseline for the source paper, there
+              is currently insufficient data to make a full assessment on our
+              proposed model, and further research is yet required.
             </p>
           </div>
         </div>
+
         <div class="row justify-content-around">
           <div class="col">
-            <h2>Design</h2>
+            <h2>Introduction</h2>
           </div>
         </div>
+
         <div class="row justify-content-around">
           <div class="col">
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. In,
-              soluta atque nihil repudiandae repellat nobis accusamus quidem
-              amet hic quia error quaerat commodi iusto minima libero quasi
-              quibusdam officiis praesentium! Doloribus, iusto perspiciatis!
-              Nemo tempora, quod distinctio assumenda culpa nam quaerat ratione
-              excepturi. Sapiente quaerat voluptatum nulla voluptate ad sunt
-              excepturi laborum architecto! Est eveniet iste mollitia
-              exercitationem nulla voluptas!
+              When conversing with a state-of-the-art open-domain chat-bot, they
+              often make errors, and among them are those that involve
+              consistency of generated statements, more specifically
+              contradicting statements. This is a problem, because it can give
+              the impression the chat-bot isn't listening, and doesn't
+              understand what it is saying or what is being said to it. This can
+              easily lead to dismissal or lack of confidence in the chat-bot's
+              ability to communicate. The ability to communicate well should be
+              expected in a quality Persona-Chat context, in addition to other
+              factors like causality and basic logic. This all leads to the
+              question, from the source paper : "How well can a natural language
+              understanding module model the consistency (including persona,
+              logic, causality, etc) in a general conversation?"
             </p>
           </div>
         </div>
+
         <div class="row justify-content-around">
           <div class="col">
-            <h2>Implementation</h2>
+            <h2>Related Work</h2>
           </div>
         </div>
+
         <div class="row justify-content-around">
           <div class="col">
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora
-              doloremque quo optio delectus sint quidem et commodi laudantium.
-              Hic fugiat molestias sit. Libero, enim id! Voluptatibus vero earum
-              numquam itaque. Assumenda voluptate deleniti earum illo laborum
-              sint animi recusandae ab obcaecati laudantium excepturi, saepe
-              iure mollitia numquam fugiat laboriosam nam veritatis facere ex
-              libero. Ullam rem provident laboriosam vitae eius! Illo, sed
-              consequatur suscipit ea eos quibusdam provident, accusamus sint
-              earum similique, dolorem reprehenderit! Cum consequuntur,
-              officiis, aliquid odit at vitae vero modi praesentium aperiam
-              totam, doloremque quas eaque enim.
+              For our paper, we draw heavily from a previous work titled
+              <cite
+                ><a href="https://arxiv.org/abs/2012.13391"
+                  >"I like fish , especially dolphins* : Addressing
+                  Contradictions in Dialogue Modeling"</a
+                ></cite
+              >
+              . Published in Dec 2020, this paper contributed to the body of
+              work for dialog consistency for open domain chat bots, in several
+              ways. They defined a task and associated dataset, as well as two
+              classifier models.
             </p>
           </div>
         </div>
+
         <div class="row justify-content-around">
           <div class="col">
-            <h2>Results</h2>
+            <h3>DECODE-Task</h3>
+            <p>
+              The authors created the DECODE Task (the <b>D</b>ialogu<b>E</b>
+              <b>CO</b>ntradiction <b>DE</b>tection Task). In this task, an
+              agent must correctly identify whether the last turn of a
+              conversation contains a contradiction to a previous statement in
+              the conversation. The more complicated variant involves providing
+              turn-reference(s) as supporting evidence to earlier in the
+              conversation for which the last turn contradicts.
+            </p>
           </div>
         </div>
+
+        <div class="row justify-content-around">
+          <div class="col">
+            <h3>DECODE-DataSet</h3>
+            <p>
+              The major contribution of the source paper is the DECODE dataset,
+              containing around 35,426 dialogues, with human written
+              annotations, it contains such contradictions and consistency
+              errors. this is an improvement over other Natural Language
+              Inference (NLI) datasets. This dataset contains both human-human
+              and human-bot dialogues in both varieties (with and without
+              contradictions).
+            </p>
+            <ul>
+              <li>
+                Take preselected dialogues covering various topics from four
+                different places: Wizard of Wikipedia, Empathetic Dialogues,
+                Blended Skill Talk, ConvAI2
+              </li>
+              <li>
+                Give annotators a pre-selected dialogue, and have them continue
+                the conversation leaving the last speaker to contradict themself
+                in the dialogue history. Also, they mark all statements in the
+                dialogue history that are involved in the contradiction as
+                supporting evidence, then have up to 3 annotators verify the
+                examples.
+              </li>
+              <li>
+                Include an equal number of non-contradicting examples, and put
+                the less verified data in with the training data, and only the
+                most verified examples in the dev and test data.
+              </li>
+              <li>
+                Create an auxillary test sets by : adding some additional
+                dialoge between the contradiction, and the evidence for said
+                contradiction, creating a new example with the same
+                contradiction. On the other hand, removing the evidence for the
+                detected contradiction, thereby creating another example,
+                without a contradiction.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row justify-content-around">
+          <div class="col">
+            <h3>DECODE-Classifiers</h3>
+            <p>
+              The authors created two classifiers to address the DECODE task,
+              use to detect such contradictions and inconsistencies in a
+              conversation.
+            </p>
+            <p>
+              <b>An Unstructured approach</b>, the mainstream approach of
+              applying a pre-trained NLI Transformer model, following the
+              paradigm of Natural Language Understanding (NLU) modeling.
+            </p>
+            <p>
+              <b>A Structured Utterance-based approach</b>, where utterances are
+              paired beforehand, and then used by a NLI Transformer model, to
+              make the same predictions, but also give contradiction indices
+              pointing to which pairs of statements contradict the last turn.
+            </p>
+          </div>
+        </div>
+
+        <div class="row justify-content-around">
+          <div class="col">
+            <h2>Methodology</h2>
+          </div>
+        </div>
+
         <div class="row justify-content-around">
           <div class="col">
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad natus
-              iste, quae aperiam voluptatum quod veniam saepe laudantium
-              corrupti nisi ipsam delectus nesciunt dignissimos magnam ex! Aut
-              voluptatibus voluptate quaerat. Explicabo voluptatem
-              necessitatibus nobis pariatur odit impedit, quam, quod quasi error
-              tempora nihil ipsa, amet blanditiis quibusdam. Quod ipsa expedita,
-              architecto asperiores soluta veniam voluptatibus corporis esse rem
-              vero beatae.
+              To build our composite model, we use the universal POS tag-set for
+              English. Going through our data during preprocessing, we predict
+              the tags for teach turn, and then interleave those predicted tags
+              in with the text itself. We then create new tokens for each
+              POS-tag in the tagset for the tokenizer, and expand our embeddings
+              accordingly in the model. Given the interleaved sequence of tokens
+              for both \( u_{i} \) and \( u_{n} \), we then fine tune the model
+              using DECODE, and obtain our resulting classification. It is our
+              expectation that the newly created tokens for POS-tags, and their
+              untrained embeddings will take appropriate weights during
+              fine-tuning, and be an improvement over and above the baseline.
+            </p>
+          </div>
+        </div>
+
+        <div class="row justify-content-around">
+          <div class="col">
+            <h2>Data</h2>
+          </div>
+        </div>
+
+        <div class="row justify-content-around">
+          <div class="col">
+            <p>
+              DECODE has 27,184 training samples, balance between contradictions
+              and non-contradictions, and 4216 samples for evaluation in the
+              test set. The data in DECODE is structured in conversations, and
+              within that turns. In the most raw of data you can obtain in JSON,
+              you'll also find conversation-IDs, and other meta-data relating to
+              collection and annotation of the data. Each speaker has their own
+              lines, and at the end there is whether it is a contradiction or
+              not. If it is a contradiction, the contradiction indices.
+            </p>
+
+            <p>
+              <b>Add Two Turns (A2T) and Remove Contradicting Turns (RCT)</b>
+              Given the major contribution of the source paper is the dataset,
+              we would like to acknowledge two clever techniques used to
+              compliment the test set of data, as two additional auxiliary test
+              sets. It is possible that such a For A2T, they insert two randomly
+              sampled turns into the dialogue such that they are between the two
+              contradicting turns. This gives a new contradicting dialogue with
+              a longer dialogue history, which may have a good effect in terms
+              of finer detail resolution, but at the same time, potentially
+              helping with over-fitting to the training data, as it's similar to
+              an example, but not exactly the same. For RCT, they remove all the
+              turns marked as supporting evidence for the contradiction in the
+              dialogue except the last utterance. This results in a new
+              non-contradiction dialogue.
+            </p>
+          </div>
+        </div>
+
+        <div class="row justify-content-around">
+          <div class="col">
+            <h2>Ethical Considerations</h2>
+          </div>
+        </div>
+
+        <div class="row justify-content-around">
+          <div class="col">
+            <p>
+              <b>Data Collection</b>
+              In the source paper they appear to be very transparent about their
+              data collection sources and annotators on Mechanical Turk. Each
+              annotator had a limit of 20 examples, and had to pass an
+              onboarding test first. Furthermore, it was concluded with up to 3
+              different annotators verifying the labels. those with three
+              verifications were put into the evaluation set, and those with
+              less verification (one or two) were in the training data set.
+            </p>
+            <p>
+              <b>Crowd-sourcing</b>
+              However, after looking at some of the training data, I can see
+              that some of the examples have an amount of ambiguity, or outright
+              do not represent a contradiction. One of the greatest benefits of
+              crowd-sourcing is the wide diversity of contributions and
+              representation that can provide; given the crowd sourced from is
+              the same crowd such a product would serve. However, not every
+              single person is keenly aware that the antecedent of a conditional
+              statement isn't to be taken as true on its face. for example,
+              given the statement "if the sun doesn't rise tomorrow, then it'll
+              be dark all day", one cannot take for truth from that statement
+              alone, that the sun will not rise tomorrow. Suffice it to say, one
+              needs to consider the proficiency/expert-status required to
+              generate the highest of quality data.
+            </p>
+            <p>
+              <b>Potential for Misuse</b>
+              Even for something as innocuous as contradiction detection, there
+              does exist the ability for it to be misused. Consider if this were
+              adapted for transcripts, and a false-positive got someone
+              implicated of a crime, unlawfully detained, or otherwise harmed,
+              solely on judgement of such an agent. With the unstructured
+              approach, there is no supporting evidence, which would be a bad
+              black box. However, even with the supporting evidence the
+              structured approach provides, for it to be actionable, I think it
+              should be necessary for a human using/benefiting from such a
+              system to be accountable if/when the system fails or is misused.
+              Additionally, the human should be required to verify the result
+              and supporting evidence inference.
+            </p>
+          </div>
+        </div>
+
+        <div class="row justify-content-around">
+          <div class="col">
+            <h2>Experimental Setup</h2>
+          </div>
+        </div>
+
+        <div class="row justify-content-around">
+          <div class="col">
+            <p>
+              For our POS-tagging, we use Flair, which provides both POS-tagging
+              and NER-tagging for a number of languages in an easy and
+              convenient library. For our pretrained models and fine-tuning we
+              use a combination of python, HuggingFace, and PyTorch.
+            </p>
+            <p>
+              All experiments fine-tune the pretrained model BERT over three
+              epochs of the training data, and linearly decay the learning rate
+              from 5e-5 to 0 over that duration. Similarly, we get our dataset
+              from ParlAI, built locally. All experiments were run using cloud
+              computational resources provided by Google Colab in python3.
+            </p>
+          </div>
+        </div>
+
+        <div class="row justify-content-around">
+          <div class="col">
+            <h2>Baselines and Results</h2>
+          </div>
+        </div>
+
+        <div class="row justify-content-around">
+          <div class="col">
+            <h3>Baselines</h3>
+            <p>
+              Given we are drawing so heavily from the source paper, it is the
+              obvious choice for a baseline. However, we do also compare against
+              the vanilla BERT model, given our query format per approach.
+            </p>
+
+            <p>
+              <b>Unstructured Approach</b>
+              In the source paper, the unstructured approach used RoBERTa only,
+              and not BERT. However, their second classifier, the structured
+              utterance-based approach did use BERT among other pretrained
+              models. In (Table 1: Unstructured Approach) we estimate the
+              baseline for BERT in the unstructured approach using that
+              difference. We find the difference to be between 4 and 5 percent,
+              and apply it to the RoBERTa accuracy accordingly to get a target
+              for BERT.
+            </p>
+            <div class="w-50 mx-auto">
+              <table class="table table-sm table-bordered table-hover">
+                <thead>
+                  <tr>
+                    <td scope="col"><b>Model</b></td>
+                    <td scope="col" class="text-center"><b>Accuracy</b></td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr scope="row">
+                    <td class="pl-4">RoBERTa</td>
+                    <td class="text-center">96.85</td>
+                  </tr>
+                  <tr scope="row">
+                    <td class="pl-4">BERT</td>
+                    <td class="text-center">XX.XX</td>
+                  </tr>
+                  <tr>
+                    <td colspan="100%"></td>
+                  </tr>
+                  <tr scope="row">
+                    <td><b>Difference</b></td>
+                    <td class="text-center"><b>-04.31</b></td>
+                  </tr>
+                  <tr scope="row">
+                    <td class="pl-4"><em>BERT(estimated)</em></td>
+                    <td class="text-center"><em>92.54</em></td>
+                  </tr>
+                </tbody>
+                <caption>
+                  Table 1: Unstructured Approach
+                </caption>
+              </table>
+            </div>
+
+            <p>
+              <b>Structured Utterance-based Approach</b>
+              While the structured utterance-based approach doesn't perform as
+              well on in-domain tests, it does generalize better. It has been
+              shown to be more robust and more transferable in the source paper.
+            </p>
+            <div class="w-50 mx-auto">
+              <table class="table table-sm table-bordered table-hover">
+                <thead>
+                  <tr>
+                    <td scope="col"><b>Model</b></td>
+                    <td scope="col" class="text-center"><b>Accuracy</b></td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr scope="row">
+                    <td class="pl-4">RoBERTa</td>
+                    <td class="text-center">93.19</td>
+                  </tr>
+                  <tr scope="row">
+                    <td class="pl-4">BERT</td>
+                    <td class="text-center">88.88</td>
+                  </tr>
+                  <tr scope="row">
+                    <td><b>Difference</b></td>
+                    <td class="text-center"><b>-04.31</b></td>
+                  </tr>
+                </tbody>
+                <caption>
+                  Table 2: Structured Utterance-based Approach
+                </caption>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="row justify-content-around">
+          <div class="col">
+            <h3>Results</h3>
+            <p>
+              This section details the results of our implementation aimed at
+              reproducing the unstructured approach and our proposed approach
+              using POS-tagging, and compare them both to our existing
+              baselines. While the source paper is more concerned with the
+              evaluation correlating well with human judgement, and arguably
+              succeeds, we are only concerned with accuracy measurements at the
+              time of this paper
+            </p>
+
+            <p>
+              <b>Unstructured Approach</b>
+              In our efforts to reproduce the results in the source paper, we
+              find ourselves reasonably successful. Our results match within a
+              approximately 1 to 2 percent (Table 1: Unstructured Approach), and
+              with appropriate hyper-parameter tuning, we're confident we could
+              achieve the same results as the baseline for our implementation of
+              the classifier.
+            </p>
+            <div class="w-50 mx-auto">
+              <table
+                class="table table-sm table-bordered table-hover text-center"
+              >
+                <thead>
+                  <tr>
+                    <td scope="col"><b>Model</b></td>
+                    <td scope="col"><b>Train/Test</b></td>
+                    <td scope="col"><b>Accuracy</b></td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr scope="row">
+                    <td>BERT</td>
+                    <td>0/4126</td>
+                    <td>0.50</td>
+                  </tr>
+                  <tr scope="row">
+                    <td>BERT</td>
+                    <td>2000/200</td>
+                    <td>0.81</td>
+                  </tr>
+                  <tr scope="row">
+                    <td>BERT</td>
+                    <td>15000/4126</td>
+                    <td>0.91</td>
+                  </tr>
+                  <tr scope="row">
+                    <td>BERT</td>
+                    <td>27184/4126</td>
+                    <td>0.91</td>
+                  </tr>
+                </tbody>
+                <caption>
+                  Table 3: Unstructured Approach
+                </caption>
+              </table>
+            </div>
+
+            <p>
+              <b>Unstructured Approach with POS-tagging</b>
+              With our proposed model, we obtained preliminary results in (Table
+              4: Unstructured Approach with POS-tagging), with more forthcoming
+              still as of the publishing of this paper. The model does perform
+              worse than the baseline from the source paper, and for our matched
+              results it does worse by 20 percent . However, it does outperform
+              another baseline; that of random chance. Similarly, given the
+              interleaved POS-tagged representation and vanilla BERT (no
+              fine-tuning), we outperform by 11 percent. To us, this means that
+              there is some value, but more training and tuning of the
+              hyper-parameters is required to make an final and fully informed
+              assessment.
+            </p>
+            <div class="w-50 mx-auto">
+              <table
+                class="table table-sm table-bordered table-hover text-center"
+              >
+                <thead>
+                  <tr>
+                    <td scope="col"><b>Model</b></td>
+                    <td scope="col"><b>Train/Test</b></td>
+                    <td scope="col"><b>Accuracy</b></td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr scope="row">
+                    <td>BERT+POS</td>
+                    <td>0/4126</td>
+                    <td>0.50</td>
+                  </tr>
+                  <tr scope="row">
+                    <td>BERT+POS</td>
+                    <td>2000/200</td>
+                    <td>0.61</td>
+                  </tr>
+                  <tr scope="row">
+                    <td>BERT+POS</td>
+                    <td>15000/4126</td>
+                    <td>----</td>
+                  </tr>
+                  <tr scope="row">
+                    <td>BERT+POS</td>
+                    <td>27184/4126</td>
+                    <td>----</td>
+                  </tr>
+                </tbody>
+                <caption>
+                  Table 4: Unstructured Approach with POS-tagging
+                </caption>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="row justify-content-around">
+          <div class="col">
+            <h2>Conclusion</h2>
+          </div>
+        </div>
+
+        <div class="row justify-content-around">
+          <div class="col">
+            <p>
+              In conclusion, while the result may not exceed every baseline, it
+              is our belief there still exists some promise in this line of
+              research, given more time and resources.
+            </p>
+            <h3>Challenges and Insights</h3>
+
+            <p>
+              <b>Additional fine-tuning and model selection</b>
+              As described in the source paper, there exist a number of other
+              models, such as RoBERTa, Elektra and BART. Similarly, there are a
+              number of NLI training datasets to further fine-tune the
+              aforementioned models upon, such as DNLI, SNLI, MNLI, and ANLI-R3.
+              Beyond that, there are certainly others forthcoming that may be
+              relevant to the DECODE task. We started our implementation with
+              RoBERTa, and spent 24+ hours of training time until at the end of
+              the second full-pass through the DECODE data, to find our
+              resulting accuracy to be 0.5; that of chance and/or no training
+              whatsoever. Fortunately, BERT was easily swapped back into place,
+              and found to perform adequately as per the baselines.
+            </p>
+
+            <p>
+              <b>POS-tagging overhead</b>
+              The POS tagging, when done in a sub-optimal way during the data
+              preprocessing stage, led to significant slowdown that in one case
+              took nearly 6 hours. This was nearly 6 times longer than the
+              shortest fine-tuning experiment of one hour. Fortunately, with
+              some additional development, it's possible to then store the
+              interleaved token sequences, and load them up for execution as
+              needed, giving a create once, and use many times benefit.
+              Similarly, better preprocessing could help a lot by way of staging
+              and batching sentences for Flair to tag, instead of doing them in
+              sequence.
+            </p>
+
+            <p>
+              <b>Cloud Based Execution Environment</b>
+              With using a cloud based computation environment for the project,
+              there were some drawback involving having ones instance shut off
+              5+ hours into execution training a model. After that, it was found
+              to be necessary to implement a checkpoint and model-saving
+              mechanism every 1000 batches, or approximately every hour.
+              Concerned the implementation affected results, a second full-pass
+              was executed to validate the resulting model-loading
+              functionality. This key insight moving forward will enable us to
+              lose minimal time to the volatility of the execution environment.
+              Similarly, one call reload old checkpoints/models and evaluate
+              their metrics, to provide a more full picture of the training
+              process. Lastly, if a training regiment were long and extensive
+              enough, this feature would be an absolute necessity.
+            </p>
+
+            <p>
+              <b>Hardware Accelerated Execution</b>
+              Unfortunately, we were unable to take full advantage of GPUs and
+              TPUs for hardware acceleration of execution. The integration does
+              appear to be there, but some additional configuration and a few
+              more procedural steps seems necessary to get the benefits. Under
+              such time constraints, it feels too inconvenient to invest and
+              investigate the necessary overhead to get such working
+              appropriately, especially when it's unclear the exact value of the
+              speedup would be. However, it's on the short list for future
+              endeavors, and the memory of this paper will surely become
+              bittersweet and blue tinted for how blazing fast we'll be
+              executing.
+            </p>
+          </div>
+        </div>
+
+        <div class="row justify-content-around">
+          <div class="col">
+            <h2>Future Work</h2>
+          </div>
+        </div>
+
+        <div class="row justify-content-around">
+          <div class="col">
+            <p>
+              Having an established implementation and baseline for a
+              state-of-the-art conversational contradiction classifier is a
+              great launching point for further research and development of
+              ideas in the NLU and NLI spaces. I firmly believe that some
+              combination of feature multiplexing will provide superior
+              performance in time, and is worth researching and investigating on
+              behalf of the NLP community at large.
+            </p>
+
+            <p>
+              <b>RoBERTa</b> The best results of the source paper were obtained
+              using the pretrained model RoBERTa, and for those reasons it would
+              be a good idea to test such an implementation for consistency and
+              best performance. Similarly, other pretrained models may have
+              benefits if they were to have some in-domain bias that could
+              reduce ambiguities with out-of-domain interpretations of the same
+              tokens and meaning.
+            </p>
+
+            <p>
+              <b>Different Architecture</b> While the proposed model works,
+              there are other possible configurations that would perform the
+              same task, but have different results. For instance, to retrain
+              BERT using different embeddings, or to have two different models
+              that get joined at the end in a single fully connected layer may
+              be able to weight each models estimates well. Similarly, one could
+              add more features in a similar way at the end with such a layer.
+            </p>
+
+            <p>
+              <b>Different POS-tags</b> In this paper, we used the universal
+              POS-tags, which seem to be the most general and smallest set of
+              tags to adequately accomplish the job. However, there exist
+              readily available other more finely granular tag set that could of
+              benefit. Being able to discern between present tense and past
+              tense, or perfect and imperfect participles, to name two examples
+              may correlate well if there exist contradictions in the grammar.
+            </p>
+
+            <p>
+              <b>Add NER tagging</b> In addition to providing grammar
+              information from Parts-of-Speech tagging, It could be useful to
+              provide yet more information for a model to learn from, such as
+              Named-Entity-Recognition. Having the information available to
+              infer from may yield better result during classification, and some
+              time later in text generation.
+            </p>
+          </div>
+        </div>
+
+        <div class="row justify-content-around">
+          <div class="col">
+            <h2>References</h2>
+          </div>
+        </div>
+
+        <div class="row justify-content-around">
+          <div class="col">
+            <p>
+              Yixin Nie, Mary Williamson, Mohit Bansal, Douwe Kiela, and Jason
+              Weston. 2020.
+              <cite
+                ><a href="https://arxiv.org/abs/2012.13391"
+                  >I like fish, especially dolphins: Addressing contradictions
+                  in dialogue modeling</a
+                ></cite
+              >. CoRR, abs/2012.13391.
             </p>
           </div>
         </div>
