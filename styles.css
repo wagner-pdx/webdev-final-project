@@ -2,6 +2,36 @@ main {
   margin-top: 56px;
 }
 
+.school > h3 {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.school > h4 {
+  font-size:1.3rem;
+}
+
+.school > h5 {
+  font-size:1.0rem;
+}
+
+.school > h6 {
+  font-size:smaller;
+}
+
+.job > h3 {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.job > h4 {
+  font-size:small;
+}
+
+.job > h5 {
+  font-size:smaller;
+}
+
 .row > .col {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
