@@ -47,16 +47,11 @@
         </div>
         <div class="row justify-content-around">
           <div class="col">
-            <p>
-              Maiores sed ipsum cupiditate, quod quaerat aperiam reprehenderit!
+            <p class="h4">
+              Please feel free to leave feedback on your experience.
             </p>
             <p>
-              Velit nisi rerum nostrum dignissimos quasi, cumque accusantium aut
-              doloremque maxime distinctio quisquam?
-            </p>
-            <p>
-              Deleniti veniam, saepe, exercitationem deserunt at modi eaque qui
-              dolorem molestias magni cumque unde ducimus rerum incidunt!
+              <small>Note: Submitting this form doesn't do anything. Nobody will know. I will be unable to read it. Nothing will change. No judgements will be made.</small>
             </p>
           </div>
         </div>
@@ -70,6 +65,7 @@
                     <label for="form-name" class="form-label">Name</label>
                     <input class="form-control" id="form-name" placeholder="Your Name"></input>
                   </div>
+
                   <div class="mb-3">
                     <label for="form-email" class="form-label"
                       >Email address</label
@@ -81,6 +77,7 @@
                       placeholder="name@example.com"
                     />
                   </div>
+
                   <div class="mb-3">
                     <label for="form-text-area" class="form-label"
                       >Please leave a comment here</label
@@ -92,6 +89,7 @@
                       placeholder="Andrew, I clicked on all the buttons on your website, and they all work! I am constantly impressed by your ability to make buttons that do things, and work. When I need someone to make buttons that work, I will be contacting you. "
                     ></textarea>
                   </div>
+
                   <div class="mb-3">
                     <legend class="mb-0">
                       How would you rate this website?
@@ -101,23 +99,24 @@
                       role="group"
                       aria-label="First group"
                     >
-                      <button id="star-01" type="button" class="star btn btn-outline-secondary">
+                      <button id="star-01" type="button" class="star btn btn-outline-secondary" aria-label="one star">
                         <i class="fa-solid fa-star"></i>
                       </button>
-                      <button id="star-02" type="button" class="star btn btn-outline-secondary">
+                      <button id="star-02" type="button" class="star btn btn-outline-secondary" aria-label="two stars">
                         <i class="fa-solid fa-star"></i>
                       </button>
-                      <button id="star-03" type="button" class="star btn btn-outline-secondary">
+                      <button id="star-03" type="button" class="star btn btn-outline-secondary" aria-label="three stars">
                         <i class="fa-solid fa-star"></i>
                       </button>
-                      <button id="star-04" type="button" class="star btn btn-outline-secondary">
+                      <button id="star-04" type="button" class="star btn btn-outline-secondary" aria-label="four stars">
                         <i class="fa-solid fa-star"></i>
                       </button>
-                      <button id="star-05" type="button" class="star btn btn-outline-secondary">
+                      <button id="star-05" type="button" class="star btn btn-outline-secondary" aria-label="five stars">
                         <i class="fa-solid fa-star"></i>
                       </button>
                     </div>
                   </div>
+
                   <div class="mb-3">
                     <legend class="mb-0">
                       Would you visit this website again?
@@ -158,10 +157,11 @@
                       </label>
                     </div>
                   </div>
+
                   <div class="mb-3">
                     <button
                       type="submit"
-                      class="btn btn-primary"
+                      class="btn btn-dark"
                       value="Submit"
                     >
                       Submit
