@@ -1,12 +1,44 @@
+/* For All Pages */
+
 main {
   margin-top: 56px;
 }
 
+.row > .col {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  background-color: rgba(39,41,43,0.03);
+  border: 1px solid rgba(39,41,43,0.1);
+}
+
+/* For card_*.html, displayed on projects.html and index.html */
+
+.card {
+    max-width: 300px;
+    min-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* For introduction.html, displayed on about.html and index.html */
 #portrait {
   border: solid;
   border-width: 8px;
 }
 
+@media screen and (max-width: 768px) {
+  #portrait {
+    max-width: 66%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  #portrait {
+    max-width: 33%; 
+  }
+}
+
+/* For Resume.html */
 .school > h3 {
   font-weight: bold;
   font-size: 1.5rem;
@@ -37,26 +69,26 @@ main {
   font-size:smaller;
 }
 
-.row > .col {
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
-  background-color: rgba(39,41,43,0.03);
-  border: 1px solid rgba(39,41,43,0.1);
-}
-
-.card {
-    max-width: 300px;
-    min-width: 300px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
+/* For contact.html form */
 .star:hover{
   color: gold;
 }
 
-@media (max-width: 575px) {
+/* For Project-02.html */
+@media (max-width: 576px) {
   div .text-monospace > p {
-    font-size: 0.75rem;
+    font-size: 0.70rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #Project-02_graph {
+    max-width: 75%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  #Project-02_graph {
+    max-width: 576px;
   }
 }
