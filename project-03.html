@@ -45,79 +45,930 @@
             <h1>Project-03</h1>
           </div>
         </div>
+
         <div class="row justify-content-around">
-          <div class="col">
-            <h2>Synopsis</h2>
+          <div class="col p-0">
+            <img
+              class="img-fluid"
+              src="src/Project-03_Post-Image_Color.png"
+              alt="Pictures of an array of digits from the MNIST data set."
+            />
           </div>
         </div>
+
+        <div class="row justify-content-around">
+          <div class="col"></div>
+        </div>
+
         <div class="row justify-content-around">
           <div class="col">
+            <h2>Part-01 : K-Means Clustering</h2>
+          </div>
+        </div>
+
+        <div class="row justify-content-around">
+          <div class="col">
+            <h3>Setup</h3>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error
-              atque consectetur debitis rem neque fugit! Qui neque praesentium
-              tempora accusamus perferendis ratione nemo sapiente, velit porro
-              repudiandae, veritatis, suscipit quis?
+              From the MNIST data set, we will pick 100 samples from each of the
+              10 classes. Then, we take all these 1,000 images and run them
+              through a k-means clustering algorithm with 10 clusters (k = 10).
+            </p>
+            <p>We will use the scikit-learn library.</p>
+            <p>
+              To measure accuracy our clustering, we simply count the number of
+              images from class a that are clustered into class b (for all a and
+              b in 0..9). Then, we produce a table of size 10x10. Each column
+              and row is labeled 0-9. An entry (i,j) is a count of how many
+              members from class i are clustered into cluster for class j.
             </p>
           </div>
         </div>
-        <div class="row justify-content-around">
-          <div class="col">
-            <h2>Design</h2>
-          </div>
-        </div>
-        <div class="row justify-content-around">
-          <div class="col">
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. In,
-              soluta atque nihil repudiandae repellat nobis accusamus quidem
-              amet hic quia error quaerat commodi iusto minima libero quasi
-              quibusdam officiis praesentium! Doloribus, iusto perspiciatis!
-              Nemo tempora, quod distinctio assumenda culpa nam quaerat ratione
-              excepturi. Sapiente quaerat voluptatum nulla voluptate ad sunt
-              excepturi laborum architecto! Est eveniet iste mollitia
-              exercitationem nulla voluptas!
-            </p>
-          </div>
-        </div>
-        <div class="row justify-content-around">
-          <div class="col">
-            <h2>Implementation</h2>
-          </div>
-        </div>
-        <div class="row justify-content-around">
-          <div class="col">
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora
-              doloremque quo optio delectus sint quidem et commodi laudantium.
-              Hic fugiat molestias sit. Libero, enim id! Voluptatibus vero earum
-              numquam itaque. Assumenda voluptate deleniti earum illo laborum
-              sint animi recusandae ab obcaecati laudantium excepturi, saepe
-              iure mollitia numquam fugiat laboriosam nam veritatis facere ex
-              libero. Ullam rem provident laboriosam vitae eius! Illo, sed
-              consequatur suscipit ea eos quibusdam provident, accusamus sint
-              earum similique, dolorem reprehenderit! Cum consequuntur,
-              officiis, aliquid odit at vitae vero modi praesentium aperiam
-              totam, doloremque quas eaque enim.
-            </p>
-          </div>
-        </div>
+
         <div class="row justify-content-around">
           <div class="col">
             <h2>Results</h2>
+
+            <figure class="figure d-block text-center">
+              <img
+                class="figure-img img-fluid mb-0"
+                src="src/Project-03_Image-01.png"
+                alt="Photo of text matrix of results"
+              />
+              <figcaption class="figure-caption">
+                <small> Results for k-means clustering alone </small>
+              </figcaption>
+            </figure>
+
+            <figure class="figure d-block text-center">
+              <img
+                class="figure-img img-fluid mb-0"
+                src="src/Project-03_Image-03.png"
+                alt="Photo of spreadsheet of results"
+              />
+              <figcaption class="figure-caption">
+                <small>k-means predictions vs true labels</small>
+              </figcaption>
+            </figure>
+
+            <p>
+              Here, we can see one of a few scenarios being the case for each
+              true-label:
+            </p>
+            <ol>
+              <li>
+                One, most examples of that true-label fall most neatly into one
+                cluster, such as 0 (74%), 6 (80%), we can see this clearly when
+                we examine the visualized-cluster-centers below, looking at
+                cluster-centers 4 and 0 (starting with zero)
+              </li>
+              <li>
+                Second, we see it is more common for the examples of a
+                true-label to be split among two or more clusters, such as 1
+                (52% in cluster-1, 46% in cluster-9), 9 (48% in cluster-7, 35%
+                in cluster-2). These similarly make sense when you look at the
+                visualization of the cluster-centers for those clusters.
+              </li>
+              <li>
+                Lastly, we have circumstances where examples of one true-label
+                are distributed among three or more labels, in a more uniform
+                fashion. This happens with 5 specifically, (27% in cluster-0,
+                33% in cluster-3, 32% in cluster-9), and when looking at the
+                cluster-centers, none of them readily look like 5s.
+              </li>
+            </ol>
+
+            <p>
+              How each of the three scenarios above impact the overall
+              classification ability of kmeans-clustering shows itself visually
+              here. Because we're trying to classify 10 classes, we use 10
+              clusters. Sometimes it works out as expected. the classes for 0
+              and 2 are well encapsulated by their clusters, and have a clearly
+              visualized cluster-center. However, some classes end up dominating
+              multiple classes, meaning that some class is not going to be in
+              the majority of any cluster. For example, it looks like we have
+              two clusters for 1, two/tree clusters for 8. Because of this, we
+              don't end up having a cluster for 4 or 5. In our second case
+              above, we can see that similarly, cluster-3 is a mix of 9's and
+              4's, and cluster-7 has a mix of 9's and 7's.
+            </p>
+
+            <p>
+              Here we calculate the accuracy, finding a maximal mapping between
+              cluster-centers and class-labels. We get 51.50%, which is better
+              than a random guess by 41.50%, but worse than previous attempts at
+              the same task using other more sophisticated methods.
+            </p>
+
+            <figure class="figure d-block text-center mb-0">
+              <img
+                class="figure-img img-fluid mb-0"
+                src="src/Project-03_Image-02.png"
+                alt="Pictures of an array of digits from the MNIST data set."
+              />
+              <figcaption class="figure-caption">
+                <small
+                  >visualized centers for k-means clustering on unaltered
+                  MNIST</small
+                >
+              </figcaption>
+            </figure>
+
+            <p>rand_score = 0.8774594594594595</p>
           </div>
         </div>
+
         <div class="row justify-content-around">
           <div class="col">
+            <h2>
+              Part-02 : K-Means Clustering, Now Including Autoencoder-Generated
+              Feature-Vectors
+            </h2>
+          </div>
+        </div>
+
+        <div class="row justify-content-around">
+          <div class="col">
+            <h3>Setup</h3>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad natus
-              iste, quae aperiam voluptatum quod veniam saepe laudantium
-              corrupti nisi ipsam delectus nesciunt dignissimos magnam ex! Aut
-              voluptatibus voluptate quaerat. Explicabo voluptatem
-              necessitatibus nobis pariatur odit impedit, quam, quod quasi error
-              tempora nihil ipsa, amet blanditiis quibusdam. Quod ipsa expedita,
-              architecto asperiores soluta veniam voluptatibus corporis esse rem
-              vero beatae.
+              This time we will take 1,000 images from each of the 10 MNIST
+              classes giving us 10,000 images.
             </p>
+            <p>We will build an autoencoder and train it.</p>
+          </div>
+        </div>
+
+        <div class="row justify-content-around">
+          <div class="col">
+            <h3>Training</h3>
+            <p>
+              Below, we will examine the progression of training of our
+              auto-encoder visually every five epochs.
+            </p>
+            <p>
+              below we see that it starts bad in the first five epochs, and then
+              gets good, and doesn't improve much after that; it plateaus.
+            </p>
+
+            <figure class="figure d-block text-center mb-0">
+              <img
+                class="img-fluid"
+                src="src/Project-03_Image-04_row-01.png"
+                alt="Pictures of an array of digits from the MNIST data set."
+              />
+              <figcaption class="figure-caption">
+                <small>Epoch 00</small>
+              </figcaption>
+            </figure>
+
+            <figure class="figure d-block text-center mb-0">
+              <img
+                class="img-fluid"
+                src="src/Project-03_Image-04_row-02.png"
+                alt="Pictures of an array of digits from the MNIST data set."
+              />
+              <figcaption class="figure-caption">
+                <small>Epoch 05</small>
+              </figcaption>
+            </figure>
+
+            <figure class="figure d-block text-center mb-0">
+              <img
+                class="img-fluid"
+                src="src/Project-03_Image-04_row-03.png"
+                alt="Pictures of an array of digits from the MNIST data set."
+              />
+              <figcaption class="figure-caption">
+                <small>Epoch 10</small>
+              </figcaption>
+            </figure>
+
+            <figure class="figure d-block text-center mb-0">
+              <img
+                class="img-fluid"
+                src="src/Project-03_Image-04_row-04.png"
+                alt="Pictures of an array of digits from the MNIST data set."
+              />
+              <figcaption class="figure-caption">
+                <small>Epoch 15</small>
+              </figcaption>
+            </figure>
+
+            <figure class="figure d-block text-center mb-0">
+              <img
+                class="img-fluid"
+                src="src/Project-03_Image-04_row-05.png"
+                alt="Pictures of an array of digits from the MNIST data set."
+              />
+              <figcaption class="figure-caption">
+                <small>Epoch 20</small>
+              </figcaption>
+            </figure>
+
+            <figure class="figure d-block text-center mb-0">
+              <img
+                class="img-fluid"
+                src="src/Project-03_Image-04_row-06.png"
+                alt="Pictures of an array of digits from the MNIST data set."
+              />
+              <figcaption class="figure-caption">
+                <small>Epoch 25</small>
+              </figcaption>
+            </figure>
+
+            <figure class="figure d-block text-center mb-0">
+              <img
+                class="img-fluid"
+                src="src/Project-03_Image-04_row-07.png"
+                alt="Pictures of an array of digits from the MNIST data set."
+              />
+              <figcaption class="figure-caption">
+                <small>Epoch 30</small>
+              </figcaption>
+            </figure>
+
+            <figure class="figure d-block text-center mb-0">
+              <img
+                class="img-fluid"
+                src="src/Project-03_Image-04_row-08.png"
+                alt="Pictures of an array of digits from the MNIST data set."
+              />
+              <figcaption class="figure-caption">
+                <small>Epoch 35</small>
+              </figcaption>
+            </figure>
+
+            <figure class="figure d-block text-center mb-0">
+              <img
+                class="img-fluid"
+                src="src/Project-03_Image-04_row-09.png"
+                alt="Pictures of an array of digits from the MNIST data set."
+              />
+              <figcaption class="figure-caption">
+                <small>Epoch 40</small>
+              </figcaption>
+            </figure>
+
+            <figure class="figure d-block text-center mb-0">
+              <img
+                class="img-fluid"
+                src="src/Project-03_Image-04_row-10.png"
+                alt="Pictures of an array of digits from the MNIST data set."
+              />
+              <figcaption class="figure-caption">
+                <small>Epoch 45</small>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="row justify-content-around">
+          <div class="col">
+            <h3>Results</h3>
+
+            <p>
+              Compared to the results above, we do see some improvements. If we
+              look at our best identified classes, 0 and 6, we find we have a
+              higher proportion here in part-02. 0 and 6 we from 74% and 80% all
+              the way to 81% and 87%. which is roughly an improvement of 7%
+              each. If I had to dive deep, I would be looking to see if it
+              recognized the closed circles in those digits, and used that as a
+              distinguishing factor in classification. However, some cases are
+              still fairly equally split over multiple clusters, for example,
+              the class for 9, is split among cluster-0, cluster-3 and
+              cluster-6. in part-01 we got 48% at best in one cluster for 9, and
+              here, we have 38% at best. which is not an improvement.
+            </p>
+
+            <p>
+              According to the accuracy (53.62%), and the rand-score (88.64%),
+              this is an improvement of about ~2% over kmeans of the 784-degree
+              vectors that represent 28x28 images. It seems to do better with
+              the 64-degree feature-vectors generated by a our trained
+              auto-encoder. However, it's not much better, and it still has the
+              same confusion problems and other drawbacks as kmeans does. There
+              are quite a few large clumps that don't get to contribute to the
+              accuracy, which is unfortunate.
+            </p>
+
+            <figure class="figure d-block text-center mb-0">
+              <img
+                class="img-fluid"
+                src="src/Project-03_Image-06.png"
+                alt="Photo of text matrix of results"
+              />
+              <figcaption class="figure-caption">
+                <small>Autoencoded k-means predictions vs true labels</small>
+              </figcaption>
+            </figure>
+
+            <figure class="figure d-block text-center mb-0">
+              <img
+                class="img-fluid"
+                src="src/Project-03_Image-07.png"
+                alt="Photo of spreadsheet of results"
+              />
+              <figcaption class="figure-caption">
+                <small>Autoencoded k-means predictions vs true labels</small>
+              </figcaption>
+            </figure>
+
+            <p>rand_score = 0.886456605660566</p>
+
+            <p>
+              After training, we have obtained feature vectors by using the
+              encoder part alone (model.encoder(x)). Then, we can use k-means
+              clustering of these feature vectors.
+            </p>
+
+            <p>
+              As discussed in part-one, we have some clusters that seem to
+              represent some classes. Cluster-4 and cluster-9, both look like
+              ones, and the data below shows that the examples are split between
+              them (52%/46% split). Similarly, for cluster-0, cluster-3, and
+              cluster-6 appearing to be 9's (28.8%/28.8%/38.3%). We don't have a
+              clear cluster-center that looks like a 4, or a 5, or a 7. However,
+              they get mixed in with clusters 0/3/6 for class-4, cluster-2 and
+              cluster-8 for class-5, and cluster-3 and cluster-6 for label-7.
+            </p>
+
+            <figure class="figure d-block text-center mb-0">
+              <img
+                class="img-fluid"
+                src="src/Project-03_Image-05.png"
+                alt="Pictures of an array of digits from the MNIST data set."
+              />
+              <figcaption class="figure-caption">
+                <small
+                  >visualized centers for k-means clustering on Autoencoded
+                  MNIST</small
+                >
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="row justify-content-around">
+          <div class="col">
+            <h2>
+              Part-03: K-Means Clustering, --Now Including PCA dimensionality
+              reduction!
+            </h2>
+          </div>
+        </div>
+
+        <div class="row justify-content-around">
+          <div class="col">
+            <h3>Setup</h3>
+            <p>
+              We will run PCA on the generated feature vectors, and further
+              reduce the dimensionality to just a few most important dimensions
+              and then finally do the clustering.
+            </p>
+          </div>
+        </div>
+
+        <div class="row justify-content-around">
+          <div class="col">
+            <h3>Results</h3>
+
+            <p>
+              While it impressive to take a 784-dimensional problem, and reduce
+              it down to 64 using an auto-encoder, and then again to 2 by using
+              PCA, we see that it doesn't offer any benefits in terms of
+              accuracy, and in fact doesn't work better at all it seems, as from
+              the above accuracy of 37.63% (a decrease of ~14 to ~16% over
+              part-01 and part-02) below score being worse, and the best parts
+              from part-01 and part-02, being able to predict 0 and 6, which at
+              best get 48% and 42% respectively. This is ~35% decrease in the
+              class-samples being centralized in one cluster.
+            </p>
+
+            <figure class="figure d-block text-center">
+              <img
+                class="img-fluid"
+                src="src/Project-03_Image-08.png"
+                alt="Photo of text matrix of results"
+              />
+              <figcaption class="figure-caption">
+                <small
+                  >Autoencoded->PCA k-means predictions vs true labels</small
+                >
+              </figcaption>
+            </figure>
+
+            <figure class="figure d-block text-center">
+              <img
+                class="img-fluid"
+                src="src/Project-03_Image-09.png"
+                alt="Photo of spreadsheet of results"
+              />
+              <figcaption class="figure-caption mb-3">
+                <small
+                  >Autoencoded->PCA k-means predictions vs true labels</small
+                >
+              </figcaption>
+            </figure>
+
+            <p>
+              Here we have reconstructed what the cluster-centers are, and we
+              see that the reduction in dimensionality has taken its toll on
+              almost all of our visualized cluster-centers. 1, 0, 8 and 9 seems
+              to be relatively unharmed, but 5, 6, 7, 8 all have been confused
+              and blurred together.
+            </p>
+
+            <figure class="figure d-block text-center">
+              <img
+                class="img-fluid"
+                src="src/Project-03_Image-10.png"
+                alt="Pictures of an array of digits from the MNIST data set."
+              />
+              <figcaption class="figure-caption">
+                <small> </small>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="row justify-content-around">
+          <div class="col">
+            <h2>Part-04 : Can you turn the noise down?</h2>
+          </div>
+        </div>
+
+        <div class="row justify-content-around">
+          <div class="col">
+            <h3>Setup</h3>
+            <p>
+              We start with an untrained autoencoder. Then, we train it by
+              adding noise input images and using the original images to compare
+              against. For adding noise, we will use a variation of
+              salt-and-pepper noise. Also, for each image, we determine the
+              fraction of pixels that have been corrupted, then keep this ratio
+              the same during training.
+            </p>
+          </div>
+        </div>
+
+        <div class="row justify-content-around">
+          <div class="col">
+            <h3>Training</h3>
+
+            <figure class="figure d-block text-center mb-0">
+              <img
+                class="img-fluid"
+                src="src/Project-03_Image-11.png"
+                alt="Pictures of an array of digits from the MNIST data set."
+              />
+              <figcaption class="figure-caption">
+                <small>source vs noisy</small>
+              </figcaption>
+            </figure>
+            <p>
+              Here I just invert the brightness of noise_ratio number of pixels.
+              This guarentees the every pixel will change / be corrupted.
+            </p>
+            <p>
+              We can see that the additional training did not amount to a large
+              change in output past the 10th epoch, and it may even be the case
+              that the weights for the 10th epoch may yeild better results.
+            </p>
+
+            <figure class="figure d-block text-center mb-0">
+              <img
+                class="img-fluid"
+                src="src/Project-03_Image-12_row-01.png"
+                alt="Pictures of an array of digits from the MNIST data set."
+              />
+              <figcaption class="figure-caption">
+                <small>Epoch 00</small>
+              </figcaption>
+            </figure>
+
+            <figure class="figure d-block text-center mb-0">
+              <img
+                class="img-fluid"
+                src="src/Project-03_Image-12_row-02.png"
+                alt="Pictures of an array of digits from the MNIST data set."
+              />
+              <figcaption class="figure-caption">
+                <small>Epoch 05</small>
+              </figcaption>
+            </figure>
+
+            <figure class="figure d-block text-center mb-0">
+              <img
+                class="img-fluid"
+                src="src/Project-03_Image-12_row-03.png"
+                alt="Pictures of an array of digits from the MNIST data set."
+              />
+              <figcaption class="figure-caption">
+                <small>Epoch 10</small>
+              </figcaption>
+            </figure>
+
+            <figure class="figure d-block text-center mb-0">
+              <img
+                class="img-fluid"
+                src="src/Project-03_Image-12_row-04.png"
+                alt="Pictures of an array of digits from the MNIST data set."
+              />
+              <figcaption class="figure-caption">
+                <small>Epoch 15</small>
+              </figcaption>
+            </figure>
+
+            <figure class="figure d-block text-center mb-0">
+              <img
+                class="img-fluid"
+                src="src/Project-03_Image-12_row-05.png"
+                alt="Pictures of an array of digits from the MNIST data set."
+              />
+              <figcaption class="figure-caption">
+                <small>Epoch 20</small>
+              </figcaption>
+            </figure>
+
+            <figure class="figure d-block text-center mb-0">
+              <img
+                class="img-fluid"
+                src="src/Project-03_Image-12_row-06.png"
+                alt="Pictures of an array of digits from the MNIST data set."
+              />
+              <figcaption class="figure-caption">
+                <small>Epoch 25</small>
+              </figcaption>
+            </figure>
+
+            <figure class="figure d-block text-center mb-0">
+              <img
+                class="img-fluid"
+                src="src/Project-03_Image-12_row-07.png"
+                alt="Pictures of an array of digits from the MNIST data set."
+              />
+              <figcaption class="figure-caption">
+                <small>Epoch 30</small>
+              </figcaption>
+            </figure>
+
+            <figure class="figure d-block text-center mb-0">
+              <img
+                class="img-fluid"
+                src="src/Project-03_Image-12_row-08.png"
+                alt="Pictures of an array of digits from the MNIST data set."
+              />
+              <figcaption class="figure-caption">
+                <small>Epoch 35</small>
+              </figcaption>
+            </figure>
+
+            <figure class="figure d-block text-center mb-0">
+              <img
+                class="img-fluid"
+                src="src/Project-03_Image-12_row-09.png"
+                alt="Pictures of an array of digits from the MNIST data set."
+              />
+              <figcaption class="figure-caption">
+                <small>Epoch 40</small>
+              </figcaption>
+            </figure>
+
+            <figure class="figure d-block text-center mb-0">
+              <img
+                class="img-fluid"
+                src="src/Project-03_Image-12_row-10.png"
+                alt="Pictures of an array of digits from the MNIST data set."
+              />
+              <figcaption class="figure-caption">
+                <small>Epoch 45</small>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="row justify-content-around">
+          <div class="col">
+            <h3>Results</h3>
+
+            <p>
+              To test this, we add noise to 10 test images and show the original
+              image, the noisy image, and the de-noised image
+            </p>
+
+            <figure class="figure d-block text-center mb-4">
+              <img
+                class="img-fluid d-block mx-auto"
+                src="src/Project-03_Image-13.png"
+                alt="Pictures of an array of digits from the MNIST data set."
+              />
+              <figcaption class="figure-caption">
+                <small>source vs noise</small>
+              </figcaption>
+            </figure>
+
+            <p>
+              Here we can see the auto-encoder does a good job at smoothing the
+              image over, while still keeping the important features in tact.
+              The original/source image is more similar to the denoised result
+              than it is to the generated noise image, which means it's working,
+              and it does its job. The numerical evidence showing this is in the
+              next section.
+            </p>
+
+            <p>
+              When we take the RMS difference pairwise between the source
+              (original-image), the noise-image, and the denoise-image, we see
+              that the difference is biggest between the source vs noise image,
+              and only slightly less is the noise vs denoise images. However,
+              surprisingly, the autoencoder manages to reduce the noise by
+              almost half, which is impressive.
+            </p>
+
+            <figure class="figure d-block text-center mb-4">
+              <img
+                class="img-fluid d-block mx-auto"
+                src="src/Project-03_Image-14.png"
+                alt="Pictures of an array of digits from the MNIST data set."
+              />
+              <figcaption class="figure-caption">
+                <small>source, noisy, denoised-results @10% noise.</small>
+              </figcaption>
+              <div class="text-monospace text-center">
+                <p class="mb-0">
+                  RMS-diff between source and noise is....... 0.3039
+                </p>
+                <p class="mb-0">
+                  RMS-diff between noise and denoise is...... 0.2899
+                </p>
+                <p class="mb-0">
+                  RMS-diff between source and denoise is..... 0.1591
+                </p>
+              </div>
+            </figure>
+          </div>
+        </div>
+
+        <div class="row justify-content-around">
+          <div class="col">
+            <h3>the b is for bonus</h3>
+
+            <figure class="figure d-block text-center mb-0">
+              <img
+                class="img-fluid w-50"
+                src="src/Project-03_Image-15.png"
+                alt="Graph of RMS diff for source, noise, and denoised data"
+              />
+              <figcaption class="figure-caption">Noise vs RMS diff</figcaption>
+            </figure>
+            <p>
+              We can see that the denoising actually works, in that the
+              difference between the original/source images and the noisy
+              version is greater than that of the denoised version. We can see
+              the improvement increases absolutely, but relative improvement is
+              nearly two-fold in most scenarios (seems to ramp up and then down,
+              peaking near 15% it seems)
+            </p>
+
+            <figure class="figure d-block text-center mb-4">
+              <figcaption class="h4 mb-0">noise-ratio = 0.000</figcaption>
+              <img
+                class="img-fluid"
+                src="src/Project-03_Image-16_SNR-0p000.png"
+                alt="Pictures of an array of digits from the MNIST data set."
+              />
+              <div class="text-monospace text-center">
+                <p class="mb-0">
+                  RMS-diff between source and noise is....... 0.0000
+                </p>
+                <p class="mb-0">
+                  RMS-diff between noise and denoise is...... 0.0891
+                </p>
+                <p class="mb-0">
+                  RMS-diff between source and denoise is..... 0.0891
+                </p>
+              </div>
+            </figure>
+
+            <figure class="figure d-block text-center mb-4">
+              <figcaption class="h4 mb-0">noise-ratio = 0.001</figcaption>
+              <img
+                class="img-fluid"
+                src="src/Project-03_Image-16_SNR-0p001.png"
+                alt="Pictures of an array of digits from the MNIST data set."
+              />
+              <div class="text-monospace text-center">
+                <p class="mb-0">
+                  RMS-diff between source and noise is....... 0.0000
+                </p>
+                <p class="mb-0">
+                  RMS-diff between noise and denoise is...... 0.0839
+                </p>
+                <p class="mb-0">
+                  RMS-diff between source and denoise is..... 0.0839
+                </p>
+              </div>
+            </figure>
+
+            <figure class="figure d-block text-center mb-4">
+              <figcaption class="h4 mb-0">noise-ratio = 0.005</figcaption>
+              <img
+                class="img-fluid"
+                src="src/Project-03_Image-16_SNR-0p005.png"
+                alt="Pictures of an array of digits from the MNIST data set."
+              />
+              <div class="text-monospace text-center">
+                <p class="mb-0">
+                  RMS-diff between source and noise is....... 0.0607
+                </p>
+                <p class="mb-0">
+                  RMS-diff between noise and denoise is...... 0.1091
+                </p>
+                <p class="mb-0">
+                  RMS-diff between source and denoise is..... 0.0925
+                </p>
+              </div>
+            </figure>
+
+            <figure class="figure d-block text-center mb-4">
+              <figcaption class="h4 mb-0">noise-ratio = 0.010</figcaption>
+              <img
+                class="img-fluid"
+                src="src/Project-03_Image-16_SNR-0p010.png"
+                alt="Pictures of an array of digits from the MNIST data set."
+              />
+              <div class="text-monospace text-center">
+                <p class="mb-0">
+                  RMS-diff between source and noise is....... 0.0920
+                </p>
+                <p class="mb-0">
+                  RMS-diff between noise and denoise is...... 0.1258
+                </p>
+                <p class="mb-0">
+                  RMS-diff between source and denoise is..... 0.0886
+                </p>
+              </div>
+            </figure>
+
+            <figure class="figure d-block text-center mb-4">
+              <figcaption class="h4 mb-0">noise-ratio = 0.020</figcaption>
+              <img
+                class="img-fluid"
+                src="src/Project-03_Image-16_SNR-0p020.png"
+                alt="Pictures of an array of digits from the MNIST data set."
+              />
+              <div class="text-monospace text-center">
+                <p class="mb-0">
+                  RMS-diff between source and noise is....... 0.1328
+                </p>
+                <p class="mb-0">
+                  RMS-diff between noise and denoise is...... 0.1575
+                </p>
+                <p class="mb-0">
+                  RMS-diff between source and denoise is..... 0.0961
+                </p>
+              </div>
+            </figure>
+
+            <figure class="figure d-block text-center mb-4">
+              <figcaption class="h4 mb-0">noise-ratio = 0.025</figcaption>
+              <img
+                class="img-fluid"
+                src="src/Project-03_Image-16_SNR-0p025.png"
+                alt="Pictures of an array of digits from the MNIST data set."
+              />
+              <div class="text-monospace text-center">
+                <p class="mb-0">
+                  RMS-diff between source and noise is....... 0.1496
+                </p>
+                <p class="mb-0">
+                  RMS-diff between noise and denoise is...... 0.1705
+                </p>
+                <p class="mb-0">
+                  RMS-diff between source and denoise is..... 0.0972
+                </p>
+              </div>
+            </figure>
+
+            <figure class="figure d-block text-center mb-4">
+              <figcaption class="h4 mb-0">noise-ratio = 0.050</figcaption>
+              <img
+                class="img-fluid"
+                src="src/Project-03_Image-16_SNR-0p050.png"
+                alt="Pictures of an array of digits from the MNIST data set."
+              />
+              <div class="text-monospace text-center">
+                <p class="mb-0">
+                  RMS-diff between source and noise is....... 0.2143
+                </p>
+                <p class="mb-0">
+                  RMS-diff between noise and denoise is...... 0.2236
+                </p>
+                <p class="mb-0">
+                  RMS-diff between source and denoise is..... 0.1122
+                </p>
+              </div>
+            </figure>
+
+            <figure class="figure d-block text-center mb-4">
+              <figcaption class="h4 mb-0">noise-ratio = 0.100</figcaption>
+              <img
+                class="img-fluid"
+                src="src/Project-03_Image-16_SNR-0p100.png"
+                alt="Pictures of an array of digits from the MNIST data set."
+              />
+              <div class="text-monospace text-center">
+                <p class="mb-0">
+                  RMS-diff between source and noise is....... 0.3021
+                </p>
+                <p class="mb-0">
+                  RMS-diff between noise and denoise is...... 0.2870
+                </p>
+                <p class="mb-0">
+                  RMS-diff between source and denoise is..... 0.1516
+                </p>
+              </div>
+            </figure>
+
+            <figure class="figure d-block text-center mb-4">
+              <figcaption class="h4 mb-0">noise-ratio = 0.150</figcaption>
+              <img
+                class="img-fluid"
+                src="src/Project-03_Image-16_SNR-0p150.png"
+                alt="Pictures of an array of digits from the MNIST data set."
+              />
+              <div class="text-monospace text-center">
+                <p class="mb-0">
+                  RMS-diff between source and noise is....... 0.3732
+                </p>
+                <p class="mb-0">
+                  RMS-diff between noise and denoise is...... 0.3421
+                </p>
+                <p class="mb-0">
+                  RMS-diff between source and denoise is..... 0.2022
+                </p>
+              </div>
+            </figure>
+
+            <figure class="figure d-block text-center mb-4">
+              <figcaption class="h4 mb-0">noise-ratio = 0.200</figcaption>
+              <img
+                class="img-fluid"
+                src="src/Project-03_Image-16_SNR-0p200.png"
+                alt="Pictures of an array of digits from the MNIST data set."
+              />
+              <div class="text-monospace text-center">
+                <p class="mb-0">
+                  RMS-diff between source and noise is....... 0.4289
+                </p>
+                <p class="mb-0">
+                  RMS-diff between noise and denoise is...... 0.3781
+                </p>
+                <p class="mb-0">
+                  RMS-diff between source and denoise is..... 0.2510
+                </p>
+              </div>
+            </figure>
+
+            <figure class="figure d-block text-center mb-4">
+              <figcaption class="h4 mb-0">noise-ratio = 0.250</figcaption>
+              <img
+                class="img-fluid"
+                src="src/Project-03_Image-16_SNR-0p250.png"
+                alt="Pictures of an array of digits from the MNIST data set."
+              />
+              <div class="text-monospace text-center">
+                <p class="mb-0">
+                  RMS-diff between source and noise is....... 0.4793
+                </p>
+                <p class="mb-0">
+                  RMS-diff between noise and denoise is...... 0.4027
+                </p>
+                <p class="mb-0">
+                  RMS-diff between source and denoise is..... 0.2961
+                </p>
+              </div>
+            </figure>
+
+            <figure class="figure d-block text-center mb-4">
+              <figcaption class="h4 mb-0">noise-ratio = 0.300</figcaption>
+              <img
+                class="img-fluid"
+                src="src/Project-03_Image-16_SNR-0p300.png"
+                alt="Pictures of an array of digits from the MNIST data set."
+              />
+              <div class="text-monospace text-center">
+                <p class="mb-0">
+                  RMS-diff between source and noise is....... 0.5258
+                </p>
+                <p class="mb-0">
+                  RMS-diff between noise and denoise is...... 0.4254
+                </p>
+                <p class="mb-0">
+                  RMS-diff between source and denoise is..... 0.3388
+                </p>
+              </div>
+            </figure>
           </div>
         </div>
       </div>

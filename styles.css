@@ -19,3 +19,9 @@ main {
 .star:hover{
   color: gold;
 }
+
+@media (max-width: 575px) {
+  div .text-monospace > p {
+    font-size: 0.75rem;
+  }
+}
